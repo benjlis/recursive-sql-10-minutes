@@ -1,4 +1,4 @@
--- Available at [https://github.com/benjlis/recursive-sql-10-minutes/blob/main/rs10m.sql]
+-- Available at https://github.com/benjlis/recursive-sql-10-minutes
 -- Create a toy HR schema for learning purposes based on the classic Oracle example tables.
 create table dept(
     deptno     integer     primary key,
@@ -51,5 +51,14 @@ insert into emp(empno, ename, job, mgr, hiredate, sal, comm, deptno) values
     (7934, 'MILLER', 'ASSOCIATE', 7782, '2012-01-23', 1300, null, 10);
 -- View the data
 select * from dept;
+
 select * from emp natural join dept;
+-- Employees and their manager
+select e.ename, e.job, b.ename mgr, b.job mgr_job
+    from emp e left join emp b on (e.mgr = b.empno);
+
+-- Employees, their manager, and the manager's manager
+select e.ename, e.job, b.ename mgr, bb.ename mgr_mgr
+    from emp e left join emp b on (e.mgr = b.empno)
+               left join emp bb on (b.mgr = bb.empno);
 
