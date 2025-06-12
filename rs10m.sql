@@ -62,8 +62,4 @@ select e.ename, e.job, b.ename mgr, bb.ename mgr_mgr
     from emp e left join emp b on (e.mgr = b.empno)
                left join emp bb on (b.mgr = bb.empno);
 
--- Let's query an employee's entire reporting line
-
-
-
-
+-- How do we query an employees entire reporting line?
