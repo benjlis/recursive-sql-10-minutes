@@ -21,16 +21,18 @@ select * from rl;
 --    recursive CTE body is always a union or union all of two queries
 --    1st query (non-recursive select): 
 --        * evaluated 1st and only once 
---        * select that queries the hierarchy table
+--        * select that queries the table containing the hierarchy
 --    2nd query (recursive select): 
 --        * evaluated 2nd - Nth times 
---        * join of the CTE to the hierarchy table
+--        * join of the CTE to the table containing the hierarchty
 --
---  Recursive CTE Evaluation   
+--  Recursive CTE Evaluation
+--    QR - Query results; WT - Working table
+--    QR = WT = {};   
 --    1. Execute non-recursive select
 --    2. Add results to QR and WT
 --    3. Repeat until WT is empty
---        a. Execute <recursive select> using WT data for <cte-name>
+--        a. Execute recursive select using WT data for CTE
 --        b. Add results to QR
 --        c. Replace WT with results
 --    4. Return QR
