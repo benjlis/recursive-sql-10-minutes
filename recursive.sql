@@ -1,13 +1,14 @@
 --
 -- We *should* be able to write this type of hierarchy query in SQL.
 --
+-- A robust solution for hierarchical queries in SQL requires recursive SQL.
+-- Not supported in the original SQL standard but was added in SQL:1999.
+--
 -- BTW, this type of query is often referred to by other names:
 --    * Transitive closure
 --    * Bill of materials problem 
 --    * Parts explosion problem
 --
--- A robust solutions for hierarchical queries in SQL requires recursive SQL.
--- Not supported in the SQL standard was added in SQL:1999.
 -- 
 with recursive rl(empno, ename, job, mgr) as
 (select empno, ename, job, mgr from emp where ename = 'ADAMS'
